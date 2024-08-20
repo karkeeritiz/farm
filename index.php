@@ -56,7 +56,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Farm Connect: Buy and Sell Raw Product Online</title>
+    <title>Farm Connect</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -133,7 +133,7 @@
 	<div class = "container">
 
 	 <div class="row text-center">
-	 <h1 align ="center" ><strong> Explore Our MarKetPlace</strong></h1><br/><br/>
+	 <h1 align ="center" ><strong> Explore Our MarKet</strong></h1><br/><br/>
 		<?php
 			$count = "SELECT * FROM products";
 			$countquery = mysqli_query($conn, $count);
