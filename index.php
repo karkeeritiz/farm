@@ -153,7 +153,7 @@
 			<div class = "col-md-4">
 			<div class = "thumbnail" align = "center">
 				<form method = "post" action = "cart.php?action=add&id=<?php echo $row["id"]; ?>">
-				<a href = "categoryvalue.php?action=view&value=<?php echo $row["Categoryname"]; ?>"><span class = "hint"><strong>Click to view </strong></span><img class = "img-responsive"
+				<a href = "categoryvalue.php?action=view&value=<?php echo $row["Category"]; ?>"><span class = "hint"><strong>Click to view </strong></span><img class = "img-responsive"
 				<?php
 					echo '<img src = "data:image/jpeg;base64,'.base64_encode($row["image"]).'">';
 					
@@ -165,7 +165,7 @@
 				
 			
 				</a>
-				<h4 class = "text-info"><strong><?php echo $row["Categoryname"]; ?></strong></h4>
+				<h4 class = "text-info"><strong><?php echo $row["Category"]; ?></strong></h4>
 				<?php 
 				
 				$_SESSION['id'] =$row[0]; ?>
