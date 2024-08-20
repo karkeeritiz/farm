@@ -133,7 +133,7 @@
 	<div class = "container">
 
 	 <div class="row text-center">
-	 <h1 align ="center" ><strong> Explore Our MarKet</strong></h1><br/><br/>
+	 <h1 align ="center" ><strong> Explore Our MarKetPlace</strong></h1><br/><br/>
 		<?php
 			$count = "SELECT * FROM products";
 			$countquery = mysqli_query($conn, $count);
