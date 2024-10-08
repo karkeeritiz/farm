@@ -11,17 +11,17 @@ include_once "resource/session.php";
 					die("Connection failed: " . $conn->connect_error);
 				}
 			
-	if ($_SESSION["total"] == 0){
-	?>
+/*	if ($_SESSION["total"] == 0){
+	*/?><!--
 		<script type = "text/javascript">
 		alert("Your Cart is Empty");
 		window.location.href = "cart.php";
 		</script>
 
-		<?php
-
+		--><?php
+/*
 	}
-	
+	*/
 	if(isset($_POST["orderProduct"])){
 	
 			$id = $_SESSION["orderid"];
@@ -108,18 +108,34 @@ include_once "resource/session.php";
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    
-					<li>
-                        <a href="register.php"><strong>Register</strong></a>
+                    <li>
+                        <a href="buyerProfile.php" style="padding-right: 100px;"><strong>View Profile</strong></a>
                     </li>
-					
-					<li>
-                        <a href="login.php"><strong>Buy Farm Products</strong></a>
+
+                    <li>
+                        <a href="logout.php" style="padding-right: 391px;">Logout</a>
+
+                    <li>
+                        <?php
+                        if (!isset($_SESSION["shopping_cart"])) {
+                            $count = 0;
+                        } else {
+                            $count = count($_SESSION["shopping_cart"]);
+                        }
+                        ?>
+                        <a id="viewcart" class="cart" style="cursor: pointer; color: #f9a023;"><i class=" fa fa-cart-plus"
+                                                                                                  style="color:#f9a023; height: 30%; "></i>
+                            <strong> <?php echo $count; ?> Item(s)</strong></a>
                     </li>
-					<li>
-                        <a href="logout.php"><strong>Logout</strong></a>
+                    <li style="padding-top: 10px;">
+                        <form method="post">
+
+                            <button name="checkout" class="btn" style="float: right; background: #f9a023;"><strong>Proceed
+                                    to CheckOut</strong></button>
+
+                        </form>
                     </li>
-					
+
                 </ul>
             </div>
         </div>
@@ -244,7 +260,7 @@ include_once "resource/session.php";
 				</tr>
 		<?php
 		$sql =	"SELECT order.category, order.quantity, order.price, products.image, products.CompanyName FROM `order`, `products` WHERE 
-			order.Buyer = '$_SESSION[username]' AND order.orderid =  '$_SESSION[orderid]' AND products.id = order.productid ";
+			order.Buyer = '$_SESSION[username]' AND products.id = order.productid ";
 			$run_user = mysqli_query($conn, $sql);
 		
 				$check_user = mysqli_num_rows($run_user);

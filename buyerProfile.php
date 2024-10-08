@@ -60,7 +60,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
 					<li>
-					<a href = "cart.php?page=1?id=<?php $productid =  uniqid(); $_SESSION["orderid"] = $productid; echo $productid ;?>" >x<strong>Buy Products</strong></a>
+					<a href = "cart.php?page=1" >x<strong>Buy Products</strong></a>
 					</li>
 					<li>
                         <a href="logout.php"><strong>Logout</strong></a>
@@ -141,7 +141,7 @@
                                     <td><?php echo $row['quantity']; ?></td>
                                     <td><?php echo $row['price']; ?></td>
 
-                                    <td><strong style = "color: red;">Pending</strong><br/>
+                                    <td><strong style = "color: red;"><?php echo $row["status"]?><br/>
                                         <form method = "post">
                                             <input type = "submit" class = "btn btn-primary" name = "update" style ="background:#f9a023; color: white; font-weight: bold;" value= "Update Status"/>
                                             <input type = "hidden"  name = "hiddenid" value= <?php echo $row["orderid"]; ?> />
