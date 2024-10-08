@@ -5,17 +5,9 @@ ini_set('default_socket_timeout', 300);
 include_once "resource/session.php";
 
 
-$servername = "localhost";
-$username = "root";
-$password = "root";
-$dbname = "register";
 $orderid = uniqid('order_', true);
-//$conn = mysql_connect($servername, $username, $password);
-//mysql_select_db($dbname, $conn);
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+
+include_once "resource/database.php";
 
 if (isset($_POST["buy"])) {
 
