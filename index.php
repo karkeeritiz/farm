@@ -56,7 +56,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Farm Connect: Buy and Sell Raw Product Online</title>
+    <title>Farm Connect</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
