@@ -3,6 +3,13 @@
 	ini_set('mysql.connect_timeout', 300);
 	ini_set('default_socket_timeout', 300);
 
+$servername = "localhost";
+$username = "root";
+$password = "root";
+$dbname = "register";
+
+$conn = mysqli_connect($servername, $username, $password,$dbname);
+
 	include_once "resource/session.php";
 
 
@@ -10,8 +17,9 @@
 			if(isset($_POST['username']) && (isset($_POST['phone'])) && (isset($_POST['select_category'])) && (isset($_POST['category'])) && (isset($_POST['price'])) && ($_FILES['image']['tmp_name'] == TRUE) ){
 				$image = addslashes($_FILES['image']['tmp_name']);
 				$name = addslashes($_FILES['image']['name']);
-				$image = mysqli_real_escape_string(file_get_contents($image));
-				//$image = base64_encode($image);
+                $image = mysqli_real_escape_string($conn, file_get_contents($image));  // Pass $conn as the first argument
+
+                //$image = base64_encode($image);
 				saveimage($name, $image);
 						
 		
