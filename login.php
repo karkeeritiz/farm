@@ -13,7 +13,7 @@ if (isset($_POST["loginBtn"])) {
 
     if ($check_user > 0) {
         $_SESSION['username'] = $username;
-        echo "<script>window.open('buyerProfile.php', '_self')</script>";
+        echo "<script>window.open('cart.php?page=1', '_self')</script>";
     } else {
         echo "invalid password or usename";
     }

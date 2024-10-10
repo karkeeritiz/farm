@@ -100,8 +100,8 @@ include_once "resource/database.php";
                 <tr>
                     <th width="10%">Order ID</th>
                     <th width="13%">Category</th>
-                    <th width="20%">Quantity</th>
-                    <th width="10%">Price</th>
+                    <th width="20%">Quantity (Price)</th>
+                    <th width="10%">Total Price</th>
                     <th width="10%">Status</th>
 
                 </tr>
@@ -129,18 +129,11 @@ include_once "resource/database.php";
                                 <tr>
                                     <td><?php echo $row["orderid"]; ?></td>
                                     <td><?php echo $row['category']; ?></td>
-                                    <td><?php echo $row['quantity']; ?></td>
-                                    <td><?php echo $row['price']; ?></td>
+                                    <td><?php echo $row['quantity']; ?> ($<?php echo $row['price']; ?>)</td>
+                                    <td>$<?php echo $row['quantity'] * $row['price']; ?></td>
 
                                     <td><strong style="color: red;"><?php echo $row["status"] ?><br/>
-                                            <form method="post">
-                                                <input type="submit" class="btn btn-primary" name="update"
-                                                       style="background:#f9a023; color: white; font-weight: bold;"
-                                                       value="Update Status"/>
-                                                <input type="hidden" name="hiddenid"
-                                                       value= <?php echo $row["orderid"]; ?>/>
                                     </td>
-                                    </form>
                                 </tr>
 
 

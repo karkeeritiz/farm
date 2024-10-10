@@ -162,7 +162,7 @@ if (isset($_POST["checkout"])) {
 
 <div class="container">
     <header class="jumbotron hero-spacer"
-            style="background: url(img/background.jpg); margin-top: 0px; background-size: cover; height: 200px;">
+            style="background: url(assets/img/background.jpg); margin-top: 0px; background-size: cover; height: 200px;">
         <h1 align="center"
             style="color: white; margin-bottom: 0px;"><?php if (isset($_SESSION['username'])) echo $_SESSION['username']; ?> </h1>
         <?php
@@ -260,14 +260,7 @@ if (isset($_POST["checkout"])) {
         $rand = rand($lim, $c) - $lim;
 
 
-        if ($page == "" || $page == "1") {
-
-            $page1 = 0;
-
-        } else {
-            $page1 = ($page * $lim) - $lim;
-
-        }
+        $page1 = 0;
 
 
         $sql = "SELECT * FROM products WHERE 'id' > '$rand' LIMIT $page1,$lim";
@@ -294,7 +287,7 @@ if (isset($_POST["checkout"])) {
                                 <input type="hidden" name="hidden_cat" value="<?php echo $row["Category"]; ?>"/>
                                 <input type="hidden" name="hidden_price" value="<?php echo $row["Prcie"]; ?>"/>
                                 <input type="hidden" name="hidden_name" value="<?php echo $row["CompanyName"]; ?>"/>
-                                <input type="number" style="width: 120px;" name="quantity" class="form-control"
+                                <input type="number" style="width: 150px;" name="quantity" class="form-control"
                                        placeholder="Enter Quantity"/></br>
                                 <input style=" background: green;" type="submit" id="buythis" name="buy"
                                        class="btn btn-primary" value="Buy Now!"/> </br>

@@ -2,7 +2,9 @@
 
 include_once "resource/session.php";
 include_once "resource/database.php";
-
+$finalPrice = 0;
+$priceInd = "$ ";
+$deliveryCharge = 50;
 if (isset($_POST["orderProduct"])) {
 
     $id = $_SESSION["orderid"];
@@ -126,6 +128,58 @@ if (isset($_POST["orderProduct"])) {
 <div class="container">
 
     <div class="row text-center" style="border: outset; ">
+
+        <div class="table-responsive" id="tbl_cart" style="width : 75% ;padding: 30px;">
+            <h1 align="left">Items In Cart</h1>
+            <table class="table table-bordered">
+                <tr>
+                    <th width="10%">Item</th>
+                    <th width="20%">Item Name</th>
+                    <th width="5%">Quantity</th>
+                    <th width="20%">Price</th>
+                    <th width="10%">Seller</th>
+
+                </tr>
+                <?php
+                $sql = "SELECT order.category, order.quantity, order.price, products.image, products.CompanyName FROM `order`, `products` WHERE 
+			order.Buyer = '$_SESSION[username]' AND products.id = order.productid ";
+                $run_user = mysqli_query($conn, $sql);
+
+                $check_user = mysqli_num_rows($run_user);
+
+                if ($check_user > 0) {
+                    while ($row = mysqli_fetch_array($run_user)) {
+                        $finalPrice+=$row["price"];
+                        ?>
+
+
+                        <tr>
+                            <th width="10%"><?php echo '<img  style = " border-radius: 10px;height: 45px; width: 45px;"src = "data:image/jpeg;base64,' . base64_encode($row["image"]) . '">'; ?></th>
+                            <th width="20%"><?php echo $row["category"]; ?></th>
+                            <th width="5%"><?php echo $row["quantity"]; ?></th>
+                            <th width="20%"><?php echo $row["price"]; ?></th>
+                            <th width="20%" style="color: purple;"><?php echo $row["CompanyName"]; ?></th>
+
+                        </tr>
+                        <?php
+                    }
+                }
+                ?>
+
+
+            </table>
+        </div>
+
+    </div>
+    <br/>
+    <br/>
+
+
+</div>
+
+<div class="container">
+
+    <div class="row text-center" style="border: outset; ">
         <div style="padding: 20px;">
             <h1 align="left">Checkout</h1>
 
@@ -174,44 +228,44 @@ if (isset($_POST["orderProduct"])) {
 
                         <div class="form-group ">
                             <select name="state" style="width: 100%;" required>
-                                <option>Select State</option>
-                                <option>Abia</option>
-                                <option>Adamawa</option>
-                                <option>Akwa Ibom</option>
-                                <option>Bauchi</option>
-                                <option>Bauchi</option>
-                                <option>Bayelsa</option>
-                                <option>Benue</option>
-                                <option>Borno</option>
-                                <option>Cross River</option>
-                                <option>Delta</option>
-                                <option>Ebonyi</option>
-                                <option>Enugu</option>
-                                <option>Edo</option>
-                                <option>Ekiti</option>
-                                <option>Gombe</option>
-                                <option>Imo</option>
-                                <option>Jigawa</option>
-                                <option>Kaduna</option>
-                                <option>Kano</option>
-                                <option>Kastina</option>
-                                <option>Kebbi</option>
-                                <option>Kogi</option>
-                                <option>Kwara</option>
-                                <option>Lagos</option>
-                                <option>Nasarawa</option>
-                                <option>Niger</option>
-                                <option>Ogun</option>
-                                <option>Ondo</option>
-                                <option>Osun</option>
-                                <option>Oyo</option>
-                                <option>Plateau</option>
-                                <option>Rivers</option>
-                                <option>Sokoto</option>
-                                <option>Taraba</option>
-                                <option>Yobe</option>
-                                <option>Zamfara</option>
-                                <option>FCT(Abuja)</option>
+                                <option value="Select State">Select State</option>
+                                <option value="Abia">Abia</option>
+                                <option value="Adamawa">Adamawa</option>
+                                <option value="Akwa Ibom">Akwa Ibom</option>
+                                <option value="Bauchi">Bauchi</option>
+                                <option value="Bauchi">Bauchi</option>
+                                <option value="Bayelsa">Bayelsa</option>
+                                <option value="Benue">Benue</option>
+                                <option value="Borno">Borno</option>
+                                <option value="Cross River">Cross River</option>
+                                <option value="Delta">Delta</option>
+                                <option value="Ebonyi">Ebonyi</option>
+                                <option value="Enugu">Enugu</option>
+                                <option value="Edo">Edo</option>
+                                <option value="Ekiti">Ekiti</option>
+                                <option value="Gombe">Gombe</option>
+                                <option value="Imo">Imo</option>
+                                <option value="Jigawa">Jigawa</option>
+                                <option value="Kaduna">Kaduna</option>
+                                <option value="Kano">Kano</option>
+                                <option value="Kastina">Kastina</option>
+                                <option value="Kebbi">Kebbi</option>
+                                <option value="Kogi">Kogi</option>
+                                <option value="Kwara">Kwara</option>
+                                <option value="Lagos">Lagos</option>
+                                <option value="Nasarawa">Nasarawa</option>
+                                <option value="Niger">Niger</option>
+                                <option value="Ogun">Ogun</option>
+                                <option value="Ondo">Ondo</option>
+                                <option value="Osun">Osun</option>
+                                <option value="Oyo">Oyo</option>
+                                <option value="Plateau">Plateau</option>
+                                <option value="Rivers">Rivers</option>
+                                <option value="Sokoto">Sokoto</option>
+                                <option value="Taraba">Taraba</option>
+                                <option value="Yobe">Yobe</option>
+                                <option value="Zamfara">Zamfara</option>
+                                <option value="FCT(Abuja)">FCT(Abuja)</option>
 
                             </select>
                             <i class="fa fa-user"></i>
@@ -225,56 +279,9 @@ if (isset($_POST["orderProduct"])) {
         </div>
 
 
-        <div class="table-responsive" id="tbl_cart" style="width : 75% ;padding: 30px;">
-            <h1 align="left">Items In Cart</h1>
-            <table class="table table-bordered">
-                <tr>
-                    <th width="10%">Item</th>
-                    <th width="20%">Item Name</th>
-                    <th width="5%">Quantity</th>
-                    <th width="20%">Price</th>
-                    <th width="10%">Seller</th>
-
-                </tr>
-                <?php
-                $sql = "SELECT order.category, order.quantity, order.price, products.image, products.CompanyName FROM `order`, `products` WHERE 
-			order.Buyer = '$_SESSION[username]' AND products.id = order.productid ";
-                $run_user = mysqli_query($conn, $sql);
-
-                $check_user = mysqli_num_rows($run_user);
-
-                if ($check_user > 0) {
-                    while ($row = mysqli_fetch_array($run_user)) {
-
-                        ?>
-
-
-                        <tr>
-                            <th width="10%"><?php echo '<img  style = " border-radius: 10px;height: 45px; width: 45px;"src = "data:image/jpeg;base64,' . base64_encode($row["image"]) . '">'; ?></th>
-                            <th width="20%"><?php echo $row["category"]; ?></th>
-                            <th width="5%"><?php echo $row["quantity"]; ?></th>
-                            <th width="20%"><?php echo $row["price"]; ?></th>
-                            <th width="20%" style="color: purple;"><?php echo $row["CompanyName"]; ?></th>
-
-                        </tr>
-                        <?php
-                    }
-                }
-                ?>
-
-
-            </table>
-        </div>
-
     </div>
     <br/>
     <br/>
-
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
 
 
 </div>
@@ -282,17 +289,17 @@ if (isset($_POST["orderProduct"])) {
      style=" height: 200px; background: #333; opacity: 0.7; filter:alpha (opacity =70); padding-left: 50px; padding-right: 50px; padding-top: 20px;">
     <div style="float: left; width: 40%; border: 2px solid #fff; border-radius: 5px; padding-left: 10px;padding-right: 10px;  margin-bottom: 20px;">
         <h3 style="color: #ff8400;">Order Summary</h3>
-        <p style="color: #fff;">Purchase Bill: NGN<?php echo number_format($_SESSION["total"], 2); ?><br/>
-            Delivery Charges: NGN<?php $d = 2000;
-            echo number_format($d, 2); ?><br/><br/>
-            TOTAL: NGN<?php echo number_format($d + $_SESSION["total"], 2) ?>
+        <p style="color: #fff;">Purchase Bill: <?php echo $priceInd?><?php echo number_format($finalPrice, 2); ?><br/>
+            Delivery Charges: <?php echo $priceInd?><?php
+            echo number_format($deliveryCharge, 2); ?><br/><br/>
+            TOTAL: <?php echo $priceInd?><?php echo number_format($deliveryCharge + $finalPrice, 2) ?>
 
         </p>
 
     </div>
     <div style="float: right; color: #fff; width: 50%;" align="right">
         <p>
-        <h3 style="color: #ff8400;"><strong>NGN<?php echo number_format($d + $_SESSION["total"], 2) ?></strong></h3>
+        <h3 style="color: #ff8400;"><strong><?php echo $priceInd?><?php echo number_format($deliveryCharge + $finalPrice, 2) ?></strong></h3>
         <button name="orderProduct" type="submit" class="btn btn-primary"
                 style="text-shadow: none;height: 50px; color: #fff; font-size:20px; border-radius:5px; background: #333;">
             Order Now
@@ -315,6 +322,10 @@ if (isset($_POST["orderProduct"])) {
 
 </div>
 
+<!-- jQuery -->
+<script src="js/jquery.js"></script>
 
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
 </body>
 </html>
